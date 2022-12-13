@@ -2,7 +2,7 @@
 **Unconstrained Scene Generation with Locally Conditioned Radiance Fields, ICCV 2021**<br>
 Allen Zhang, David Fang, Ilona Demler<br>
 
-### [Project Page](https://apple.github.io/ml-gsn/) | [Paper](https://arxiv.org/abs/2104.00670) | [Data](#datasets)
+### [Project Page](https://ilonadem.github.io/blobgsn-demo/) |  | [Data](#datasets)
 
 ## Requirements
 This code was tested with Python 3.6 and CUDA 11.1.1, and uses Pytorch Lightning. A suitable conda environment named `gsn` can be created and activated with:
