@@ -1,9 +1,14 @@
 ## BlobGSN: Generative Scene Networks with Mid-Level Blob Representations
-**Unconstrained Scene Generation with Locally Conditioned Radiance Fields, ICCV 2021**<br>
+**Unconstrained Scene Generation with Locally Conditioned Radiance Fields and Mid-Level Blob Representations**<br>
 Allen Zhang, David Fang, Ilona Demler<br>
 
 ### [Project Page](https://ilonadem.github.io/blobgsn-demo/) |  | [Data](#datasets)
 
+We combined Blob GAN with Generative Scene Networks architecture to generate editable 3D scenes. Namely, we use Gaussian Blobs to map to a 2-D floorplan that is then used to locally condition a radiance field that represents a 3D scene. By moving, shifting, scaling, removing, and adding the blobs in the mid-level latent space representation we are able to make corresponding changes in the rendered scene. The result is a customizable + editable 3D scene.
+
+### Moving blobs in a scene 
+
+### Walking through a scene
 ## Requirements
 This code was tested with Python 3.6 and CUDA 11.1.1, and uses Pytorch Lightning. A suitable conda environment named `gsn` can be created and activated with:
 ```
