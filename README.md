@@ -11,6 +11,10 @@ We combined BlobGAN with Generative Scene Networks to generate editable 3D scene
 
 ## Related Work
 
+### BlobGAN
+
+### Generative Scene Networks (GSN)
+
 ## Proposed Architecture
 
  ![](./figs/architecture.png)
@@ -21,7 +25,7 @@ We combined BlobGAN with Generative Scene Networks to generate editable 3D scene
 
 ### Blob Editing
 
-With our blob representation, we can edit blobs in the forms of moving, resizing, adding, removing, and rotating blobs. Such edits leads to changes in the scene. In our case, we hypothesize that these blobs represent large-scale objects such as rooms and walls. Thus, when we move blobs, we can see walls and even whole rooms moving in our scene.
+With our blob representation, we can edit blobs in the forms of moving, resizing, adding, removing, and rotating blobs. Such edits lead to changes in the scene. In our case, we hypothesize that these blobs represent large-scale objects such as rooms and walls. Thus, when we move blobs, we can see walls and even whole rooms moving in our scene.
 
 <p align="center">
   <img src="./gifs/moving_blobs_down.gif" width="50%" />
