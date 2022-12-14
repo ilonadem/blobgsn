@@ -2,26 +2,60 @@
 **Unconstrained Scene Generation with Locally Conditioned Radiance Fields and Mid-Level Blob Representations**<br>
 Allen Zhang, David Fang, Ilona Demler<br>
 
-### [Project Page](https://ilonadem.github.io/blobgsn-demo/) |  | [Data](#datasets)
+### [Project Page](https://ilonadem.github.io/blobgsn-demo/) | [Data](#datasets)
 
-We combined Blob GAN with Generative Scene Networks to generate editable 3D scenes. Namely, we use Gaussian "blobs" as input to generating a 2-D floorplan that is then used to locally condition a radiance field that represents a 3D scene. The Gaussian blobs represent objects in a scene; by moving, shifting, scaling, removing, and adding the blobs in the latent space we are able to make corresponding changes in the rendered scene. The result is a customizable + editable 3D scene, and a self-suprevised way of identifying and representing the objects in a scene.
+## Abstract 
+We combined BlobGAN with Generative Scene Networks to generate editable 3D scenes. Namely, we use Gaussian "blobs" as input to generating a 2-D floorplan that is then used to locally condition a radiance field that represents a 3D scene. The Gaussian blobs represent objects in a scene; by moving, shifting, scaling, removing, and adding the blobs in the latent space we are able to make corresponding changes in the rendered scene. The result is a customizable and editable 3D scene, and a self-suprevised way of identifying and representing the objects in a scene.
 
-### Moving blobs in a scene 
+## Motivation
 
-### Walking through a scene
-## Requirements
-This code was tested with Python 3.6 and CUDA 11.1.1, and uses Pytorch Lightning. A suitable conda environment named `gsn` can be created and activated with:
-```
-conda env create -f environment.yaml python=3.6
-conda activate gsn
-```
-If you do not already have CUDA installed, you can do so with:
-```
-wget https://developer.download.nvidia.com/compute/cuda/11.1.1/local_installers/cuda_11.1.1_455.32.00_linux.run
-sh cuda_11.1.1_455.32.00_linux.run --toolkit --silent --override
-rm cuda_11.1.1_455.32.00_linux.run
-```
-Custom CUDA kernels may not work with older versions of CUDA. This code will revert to a native PyTorch implementation if the CUDA version is incompatible, although runtime may be ~25% slower.
+## Related Work
+
+## Proposed Architecture
+
+ ![](./figs/architecture.png)
+
+## Results
+
+### Scene Walkthroughs
+
+### Blob Editing
+
+With our blob representation, we can edit blobs in the forms of moving, resizing, adding, removing, and rotating blobs. Such edits leads to changes in the scene. In our case, we hypothesize that these blobs represent large-scale objects such as rooms and walls. Thus, when we move blobs, we can see walls and even whole rooms moving in our scene.
+
+<p align="center">
+  <img src="./gifs/moving_blobs_down.gif" width="50%" />
+ <br>
+  Moving a blob towards the camera.
+ <br>
+ &nbsp; <br>
+ <img src="./gifs/moving_blobs_away.gif" width="50%" />
+ <br>
+  Moving a blob away from the camera.
+  <br>
+ &nbsp; <br>
+ <img src="./gifs/moving_blobs_left.gif" width="50%" />
+ <br>
+  Moving a blob to the left of the camera.
+  <br>
+ &nbsp; <br>
+ <img src="./gifs/moving_blobs_right.gif" width="50%" />
+ <br>
+  Moving a blob to the right of the camera.
+</p>
+
+We can manipulate multiple blobs at the same time and resize blobs to make their objects more prominent. For example, we can effectively spawn in a blob to "create" a new wall/room in the scene.
+
+<p align="center">
+  <img src="./gifs/moving_blobs_double.gif" width="50%" />
+ <br>
+  Moving two blobs at the same time.
+ <br>
+ &nbsp; <br>
+ <img src="./gifs/moving_blobs_spawn.gif" width="50%" />
+ <br>
+  Spawning a blob in the middle of the scene.
+</p>
 
 ## Datasets
 We provide camera trajectories for two datasets that we used to trained our model: Vizdoom and Replica. These datasets are composed of different sequences with corresponding rgb+depth frames and camera parameters (extrinsiscs and intrinsics).
@@ -41,25 +75,7 @@ python scripts/download_vizdoom.py
 python scripts/download_replica.py
 ```
 
-## Interactive exploration demo
-We provide a [Jupyter notebook](notebooks/walkthrough_demo.ipynb) that allows for interactive exploration of scenes generated from a pre-trained model. Use the WASD keys to freely navigate through the scene! Once you are done, the notebook interpolates the camera path to render a continuous trajectory. Note: You need to download the Replica dataset before via this [script](scripts/download_replica.py) before running the notebook.
-
-Explore scene with WASD to set keypoints | Rendered trajectory
-:---: | :---:
-<img src="./assets/keyframes.gif" width=256px> | <img src="./assets/camera_trajectory.gif" width=256px>
-
-## Training models
-Download the training dataset (if you have not done so already) and begin training with the following commands:  
-**VizDoom**<br>
-```
-bash scripts/launch_gsn_vizdoom_64x64.sh
-```
-
-**Replica**<br>
-```
-bash scripts/launch_gsn_replica_64x64.sh
-```
-
-Training takes about 3 days to reach 500k iterations with a batch size of 32 on two A100 GPUs.
-
-
+## Code Acknowledgements
+Our code builds off of existing work:
+- [BlobGAN](https://github.com/dave-epstein/blobgan)
+- [Generative Scene Networks](https://apple.github.io/ml-gsn/)
