@@ -24,6 +24,7 @@ Current 3D representation research mainly focuses on single isolated objects, su
 A model that achieves our goals would allow for a variety of uses. Considering the hype around GANs such as DALL-E and Stable Diffusion, it could be used for generative art in the form of customizable 3D rooms. Our model could also possibly be applied large-scale scenes such as streets and cities, although we predict that this will be quite difficult. The most important application however could be scene understanding. If our blobs can represent objects in a room, that would mean that our model is capable of unsupervised object segmentation in 3D scenes, which could be useful in downstream applications such as autonomous vehicles.
 
 ## Proposed Architecture
+We propose using the output from the BlobGAN generator as the input latent floorplan for GSN. We hope that the model learns a correspondence between blobs in the floorplan and actual rendered entities, whether that be rooms, walls, or smaller objects such as couches and tables. The discriminator remains the same from GSN (which is also based off StyleGAN so it should also be similar to the BlobGAN discriminator). 
 
  ![](./figs/architecture.png)
 
@@ -71,7 +72,7 @@ We can manipulate multiple blobs at the same time and resize blobs to make their
 </p>
 
 ## Datasets
-We provide camera trajectories for two datasets that we used to trained our model: Vizdoom and Replica. These datasets are composed of different sequences with corresponding rgb+depth frames and camera parameters (extrinsiscs and intrinsics).
+We use the Replica and Vizdoom datasets provided by the Generative Scene Networks authors. They contain scenes and sequences of rgb and depths frames, along with camera parameters.
 
 Dataset | Size | Download Link
 --- | :---: | :---:
