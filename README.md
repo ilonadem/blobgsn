@@ -11,7 +11,7 @@ We combine BlobGAN with Generative Scene Networks (GSN) to generate editable 3D 
 ## Related Work
 There has been much progress in the last few years in the field of scene representation and reconstruction recently with the advent of NeRFs and other similar architectures. 
 
-## Neural Radiance Fields (NeRFs)
+### Neural Radiance Fields (NeRFs)
 Neural radiance fields (NeRFs) and its variations are fully connected neural networks that can generate novel views of complex 3D scenes based on a set of input 2D images. Many derivatives exist with varying capabilities, such as Mip-NeRF and PixelNeRF, that provide advantages such as faster rendering speed, better novel view synthesis, or requiring less input images.
 
 ### Generative Scene Networks (GSN)
