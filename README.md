@@ -5,7 +5,8 @@ Allen Zhang, David Fang, Ilona Demler<br>
 ### [Project Page](https://ilonadem.github.io/blobgsn-demo/) | [Data](#datasets)
 
 ## Abstract 
-We combine BlobGAN with Generative Scene Networks (GSN) to generate editable 3D scenes. Namely, we use Gaussian "blobs" as input to generate a latent floorplan that is then used to locally condition radiance fields that represent a novel, generated 3D scene. The Gaussian blobs represent objects in a scene; by moving, shifting, scaling, removing, and adding the blobs in the latent space we are able to make corresponding changes in the rendered scene. The result is a customizable and editable 3D scene, and a self-suprevised way of identifying and representing the objects in a scene.
+We combined BlobGAN with Generative Scene Networks to generate editable 3D scenes. Namely, we use Gaussian "blobs" as input to generating a 2-D floorplan that is then used to locally condition a radiance field. The Gaussian blobs represent objects in a scene; by moving, shifting, scaling, removing, and adding the blobs in the latent space we are able to make corresponding changes in the rendered images. The result is a customizable and editable 3D scene, and a self-suprevised way of identifying and representing the objects in it.
+
 
 
 ## Related Work
@@ -72,6 +73,15 @@ We can manipulate multiple blobs at the same time and resize blobs to make their
  <br>
   Spawning a blob in the middle of the scene.
 </p>
+
+## Limitations and Future Work
+These results are quite exciting, but there are several future avenues of investigations that would be interesting. The first would be to perturb our blobs during training, which produced favorable results in the BlobGAN paper, and we anticipate might improve things in our case as well. Additionally, we note that the trained blobs end up being roughly the same size as the rooms themselves; we expect that increasing the amount of blobs will result in blobs that represent objects within the rooms themselves.
+
+Another interesting investigation would be sizes other than gaussian blobs. Most objects in the room are not spherical, but the circular nature of this mid-level representation sometimes results in circular room artifacts. It would be interesting to see what training on n-gons or rectangles might look like. Additionally, considering a tri-plane structure (three ground plans) or 3D Gaussian Blobs might ipmprove the model further. InstantNGP and TensoRF also present new paradigms of model training that are much faster and comparably convergent, which would also be promising as a substitute for the MiP NeRF currently used in BlobGSN.
+
+The results above are from the Replica dataset, which is relatively small (~18 scenes), and it would be interesting to train the model on bigger and more diverse scenes in which there is more variety in objects and scales. The immedeate next step for this would be testing on a Boston Dataset generated using GoogleEarth Studio. 
+
+An interesting extension of this work would be to examine what the blobs are learning further, and even explore the question of what sort of blobs could be learned from a pre-trained nerf (inverse BlobGSN). The mid-level nature of the blob representation also opens up exciting questions in the realm of suprevised learning -- the blobs learn to identify and represent objects on their own without any human supervision.
 
 ## Datasets
 We use the Replica and Vizdoom datasets provided by the Generative Scene Networks authors. They contain scenes and sequences of rgb and depths frames, along with camera parameters.
