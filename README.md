@@ -9,22 +9,24 @@ We combine BlobGAN with Generative Scene Networks (GSN) to generate editable 3D 
 
 
 ## Related Work
+There has been much progress in the last few years in the field of scene representation and reconstruction recently with the advent of NeRFs and other similar architectures. 
 
-Generative adversarial networks (GANs) have wide applications in the realm of scene representations. BlobGAN and GSN both use similar GAN architectures, which we predict will allow them to work well together in combination.
-
-### BlobGAN
-BlobGAN presents an unsupervised way to train a mid-level representation for a generative model of scenes. Scenes are modeled as a collection of spatial, alpha-composited “blobs” of features which are placed onto a feature grid and then decoded into an image by a GAN (such as StyleGAN2). The blob parameters encode the position, size, and style of each “entity” in the scene. In experiments, researchers find that editing blobs in the latent space corresponds to edits in the rendered output. Their underlying generator/discriminator architecture is based off of StyleGAN2.
+## Neural Radiance Fields (NeRFs)
+Neural radiance fields (NeRFs) and its variations are fully connected neural networks that can generate novel views of complex 3D scenes based on a set of input 2D images. Many derivatives exist with varying capabilities, such as Mip-NeRF and PixelNeRF, that provide advantages such as faster rendering speed, better novel view synthesis, or requiring less input images.
 
 ### Generative Scene Networks (GSN)
-GSN is also a generative model that learns to create novel indoor scenes. It relies on generating a local latent scene floorplan from a global latent code in order to locally condition NeRFs. This local latent floorplan essentially decomposes the scene from one large radiance field into many smaller local radiance fields. Their underlying generator/discriminator architecture is also based on StyleGAN2.
+GSN is a generative model that learns to create novel indoor scenes. It relies on generating a local latent scene floorplan from a global latent code in order to locally condition NeRFs, which are then used to render images. This local latent floorplan essentially decomposes the scene from one large radiance field into many smaller local radiance fields. GSN learns a scene prior that the paper argues can be trained on multiple datasets and then recycled for other tasks, like generating new scenes or scene auto-complete. Their underlying generator/discriminator architecture is based on StyleGAN2.
+
+### BlobGAN
+BlobGAN presents an unsupervised way to train a mid-level representation for a generative model of scenes. Scenes are modeled as a collection of spatial, alpha-composited “blobs” of features which are placed onto a feature grid and then decoded into an image by a GAN (such as StyleGAN2). The blob parameters encode the position, size, and style of each “entity” in the scene. In experiments, researchers find that editing blobs in the latent space corresponds to edits in the rendered output. Their underlying generator/discriminator architecture is also based off of StyleGAN2.
 
 ## Motivation
-Current 3D representation research mainly focuses on single isolated objects, such as faces, simple cars, mugs, or small uncluttered scenes. Scenes on the scales of rooms, streets, and cityscapes are only now starting to gain interest in this field, along with a variety of NeRF derivatives used to represent them. However, GANs in this space are still uncommon, as creating novel 3D scenes on this scale is difficult. With a GSN and BlobGAN combination, we hope to couple the mid-scale room generation of GSN with the scene editing capabilities of BlobGAN, and possibly expand to larger-scale scenes.
+Current 3D representation research mainly focuses on single isolated objects, such as faces, simple cars, mugs, or small uncluttered scenes. Scenes on the scales of rooms, streets, and cityscapes are only now starting to gain interest in this field, along with a variety of NeRF derivatives used to represent them. However, GANs in this space are still uncommon, as creating novel 3D scenes on this scale is difficult. With a combined GSN and BlobGAN model, we hope to couple the mid-scale room generation of GSN with the scene editing capabilities of BlobGAN, and possibly expand to larger-scale scenes.
 
 A model that achieves our goals would allow for a variety of uses. Considering the hype around GANs such as DALL-E and Stable Diffusion, it could be used for generative art in the form of customizable 3D rooms. Our model could also possibly be applied large-scale scenes such as streets and cities, although we predict that this will be quite difficult. The most important application however could be scene understanding. If our blobs can represent objects in a room, that would mean that our model is capable of self-supervised object discovery in 3D scenes, which could be useful in downstream applications such as autonomous vehicles.
 
 ## Proposed Architecture
-We propose using the output from the BlobGAN generator as the input latent floorplan for GSN. We hope that the model learns a correspondence between blobs in the floorplan and actual rendered entities, whether that be rooms, walls, or smaller objects such as couches and tables. The discriminator remains the same from GSN (which is also based off StyleGAN so it should also be similar to the BlobGAN discriminator). 
+We propose using the output from the BlobGAN generator as the input latent floorplan for GSN. We hope that the model learns a correspondence between blobs in the floorplan and actual rendered entities, whether that be rooms, walls, or smaller objects such as couches and tables. The discriminator remains the same from GSN (which is also based off StyleGAN so it should also be similar to the BlobGAN discriminator). BlobGAN and GSN both use similar GAN architectures, which we predict will allow them to work well together in combination.
 
  ![](./figs/architecture.png)
 
