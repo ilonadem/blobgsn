@@ -62,12 +62,12 @@ For the following walkthroughs, we sampled 5 random scenes (without cherry picki
   &nbsp; <br>
 
 </p> 
-However, it appears that blobs don't necessarily represent recognizable objects or sections of the scene.
+However, it appears that blobs don't necessarily represent recognizable objects or sections of the scene. In the following walkthrough, the upper left and bottom right green blobs seem to correspond to areas that aren't recognizable rooms or features, unlike the other central blobs.
+
 
 <p align="center">
+<br>
   <img src="./gifs/scene_walk_1_long.gif" width="40%"/>
-  <br>
-  In this scene, the upper left and bottom right green blobs seem to correspond to areas that aren't recognizable rooms or features, unlike the other central blobs
 </p> 
 
 ### Blob Editing
