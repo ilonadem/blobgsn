@@ -36,6 +36,40 @@ These results are from a model trained for 2 days on the Replica dataset with a 
 
 ### Scene Walkthroughs
 
+For the following walkthroughs, we sampled 5 random scenes (without cherry picking) and mapped a trajectory through the scene. We used the nerf ray sampling function to draw an agent that walks on top of the blob representation with two lines to denote its FOV. From this representation, one can see that the blobs represent different rooms, styles or sections of the scene.
+
+<p align="center" display="inline-block" >
+  <img hspace="5px" vspace="5px" src="./gifs/scene_walk_0.gif" width="150px"/>
+  <img hspace="5px" vspace="5px"  src="./gifs/scene_walk_1.gif" width="150px"/>
+  <img hspace="5px" vspace="5px"  src="./gifs/scene_walk_2.gif" width="150px"/>
+  <img hspace="5px" vspace="5px"  src="./gifs/scene_walk_3.gif" width="150px"/>
+  <img hspace="5px" vspace="5px"  src="./gifs/scene_walk_4.gif" width="150px"/>
+  <br>
+  Walking through five random scenes
+  <br>
+  &nbsp; <br>
+
+  <img src="./gifs/scene_walk_3_long.gif" width="40%" />
+  <br>
+  The walls of the scene correspond to boundaries of the blob.
+  &nbsp;
+  <br>
+  <br>
+
+  <img src="./gifs/scene_walk_1_slow.gif" width="40%"/>
+  <br>
+  Different blobs = different styles
+  &nbsp; <br>
+
+</p> 
+However, it appears that blobs don't necessarily represent recognizable objects or sections of the scene.
+
+<p align="center">
+  <img src="./gifs/scene_walk_1_long.gif" width="40%"/>
+  <br>
+  In this scene, the upper left and bottom right green blobs seem to correspond to areas that aren't recognizable rooms or features, unlike the other central blobs
+</p> 
+
 ### Blob Editing
 
 With our blob representation, we can edit blobs in the forms of moving, resizing, adding, removing, and rotating blobs. Such edits lead to changes in the scene. In our case, we hypothesize that these blobs represent large-scale objects such as rooms and walls. Thus, when we move blobs, we can see walls and even whole rooms moving in our scene.
