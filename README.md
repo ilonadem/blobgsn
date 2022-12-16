@@ -36,7 +36,7 @@ These results are from a model trained for 2 days on the Replica dataset with a 
 
 ### Scene Walkthroughs
 
-For the following walkthroughs, we sampled 5 random scenes (without cherry picking) and mapped a trajectory through the scene. We used the nerf ray sampling function to draw an agent that walks on top of the blob representation with two lines to denote its FOV. From this representation, one can see that the blobs represent different rooms, styles or sections of the scene.
+For the following walkthroughs, we sampled 5 random scenes (without cherry picking) and mapped a trajectory through the scene. We used the nerf ray sampling function to draw an agent that walks on top of the blob representation with two lines to denote its FOV. From this representation, one can see that the blobs represent different rooms, objects, or sections of the scene.
 
 <p align="center" display="inline-block" >
   <img hspace="5px" vspace="5px" src="./gifs/scene_walk_0.gif" width="150px"/>
